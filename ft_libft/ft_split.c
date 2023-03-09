@@ -6,7 +6,7 @@
 /*   By: kgezgin <kgezgin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/12 14:13:08 by kgezgin           #+#    #+#             */
-/*   Updated: 2022/11/15 14:09:43 by kgezgin          ###   ########.fr       */
+/*   Updated: 2023/03/06 10:05:39 by kgezgin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ static int	ft_word_count(char const *s, char c)
 
 	i = 0;
 	count = 0;
-	while (s[i] != '\0')
+	while (s && s[i] != '\0')
 	{
 		while (s[i] != '\0' && ft_isset(s[i], c))
 			i++;
@@ -77,7 +77,7 @@ char	**ft_split(char const *s, char c)
 	split = malloc(sizeof(char *) * (ft_word_count(s, c) + 1));
 	if (!split)
 		return (NULL);
-	while (*s != '\0')
+	while (s && *s != '\0')
 	{
 		while (*s != '\0' && ft_isset(*s, c))
 			s++;

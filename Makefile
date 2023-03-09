@@ -6,21 +6,19 @@
 #    By: kgezgin <kgezgin@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/02/18 10:43:48 by kgezgin           #+#    #+#              #
-#    Updated: 2023/02/28 11:41:49 by kgezgin          ###   ########.fr        #
+#    Updated: 2023/03/09 10:07:00 by kgezgin          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 SRC_DIR		= ./srcs
 SRCS		=	main.c\
 				path.c\
-				list.c\
-				forks.c\
-				parsing.c
+				forks.c
 
 OBJS			=	$(addprefix $(SRC_DIR)/, $(SRCS:%.c=%.o))
 NAME			=	pipex
 CC				=	gcc
-CFLAGS			=	-g3
+CFLAGS			=	-Wall -Wextra -Werror -g3
 RM				=	rm -f
 
 .c.o:
