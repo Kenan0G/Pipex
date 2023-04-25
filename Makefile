@@ -6,7 +6,7 @@
 #    By: kgezgin <kgezgin@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/02/18 10:43:48 by kgezgin           #+#    #+#              #
-#    Updated: 2023/04/25 11:36:26 by kgezgin          ###   ########.fr        #
+#    Updated: 2023/04/25 13:44:36 by kgezgin          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -34,7 +34,7 @@ RM				=	rm -f
 
 $(NAME):	$(OBJS)
 	cd ft_libft && make && cd ../ft_printf && make
-	$(CC) $(CFLAGS) -o $(NAME) $(OBJS) ft_libft/libft.a ft_printf/libftprintf.a get_next_line/get_next_line.c get_next_line/get_next_line_utils.c
+	$(CC) $(CFLAGS) -o $(NAME) $(OBJS) ft_libft/libft.a ft_printf/libftprintf.a
 
 all:		${NAME}
 
