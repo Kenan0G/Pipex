@@ -6,11 +6,11 @@
 /*   By: kgezgin <kgezgin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/21 13:16:17 by kgezgin           #+#    #+#             */
-/*   Updated: 2023/04/17 12:47:53 by kgezgin          ###   ########.fr       */
+/*   Updated: 2023/04/25 11:35:39 by kgezgin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/pipex.h"
+#include "../includes/pipex_bonus.h"
 
 void	get_path(char **envp, t_data *data)
 {

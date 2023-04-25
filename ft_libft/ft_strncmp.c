@@ -6,7 +6,7 @@
 /*   By: kgezgin <kgezgin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/09 15:06:27 by kgezgin           #+#    #+#             */
-/*   Updated: 2022/11/15 10:13:47 by kgezgin          ###   ########.fr       */
+/*   Updated: 2023/04/13 12:50:18 by kgezgin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,10 @@ int	ft_strncmp(const char *s1, const char *s2, size_t n)
 	unsigned char	*s_1;
 	unsigned char	*s_2;
 
+	if (s2[0] == '\0' && s1[0] == '\n')
+		return (0);
+	else if (s2[0] == '\0')
+		return (1);
 	s_1 = (unsigned char *)s1;
 	s_2 = (unsigned char *)s2;
 	i = 0;
