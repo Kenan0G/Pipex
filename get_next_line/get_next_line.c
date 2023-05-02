@@ -6,7 +6,7 @@
 /*   By: kgezgin <kgezgin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/30 12:54:08 by kgezgin           #+#    #+#             */
-/*   Updated: 2023/03/22 13:17:22 by kgezgin          ###   ########.fr       */
+/*   Updated: 2023/04/25 17:18:58 by kgezgin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,13 +81,15 @@ char	*ft_write(long len, char *temp, char *gnl, int fd)
 	return (gnl);
 }
 
-char	*get_next_line(int fd)
+char	*get_next_line(int fd, int c)
 {
 	static char	*gnl;
 	char		*temp;
 	char		*res;
 	long		len;
 
+	if (c == 1)
+		return (free(gnl), NULL);
 	if (fd < 0 || BUFFER_SIZE < 1)
 		return (NULL);
 	temp = malloc(sizeof(char) * (BUFFER_SIZE + 1));

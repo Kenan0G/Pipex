@@ -6,7 +6,7 @@
 /*   By: kgezgin <kgezgin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/11 12:14:24 by kgezgin           #+#    #+#             */
-/*   Updated: 2023/04/25 11:55:46 by kgezgin          ###   ########.fr       */
+/*   Updated: 2023/05/02 10:24:21 by kgezgin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,44 +22,24 @@ void	ft_close(t_data *data)
 		close(data->fd_pipe[0]);
 	if (data->fd_pipe[1])
 		close(data->fd_pipe[1]);
+	if (data->fd_temp)
+		close(data->fd_temp);
 }
 
-void	ft_pid_1(t_data *data, char **envp)
-{	
-	data->pid_1 = fork();
-	if (data->pid_1 == 0)
-	{
-		ft_first_cmd(data);
-		get_path(envp, data);
-		if (execve(data->path, data->cmd, envp) == -1)
-		{
-			ft_close(data);
-			perror(data->path);
-			if (data->cmd)
-				ft_free_map(data->cmd);
-			if (data->path)
-				free(data->path);
-			exit(EXIT_FAILURE);
-		}
-	}
+void	ft_wait(t_data *data, int ac)
+{
+	(void)ac;
+	while (data->index-- > 0)
+		waitpid(data->pid[data->index], NULL, 0);
+	free(data->pid);
 }
 
-void	ft_pid_2(t_data *data, char **envp)
-{	
-	data->pid_2 = fork();
-	if (data->pid_2 == 0)
-	{
-		ft_last_cmd(data);
-		get_path(envp, data);
-		if (execve(data->path, data->cmd, envp) == -1)
-		{
-			ft_close(data);
-			perror(data->path);
-			if (data->cmd)
-				ft_free_map(data->cmd);
-			if (data->path)
-				free(data->path);
-			exit(EXIT_FAILURE);
-		}
-	}
+int	ft_strcmp(char *s1, char *s2)
+{
+	int	i;
+
+	i = 0;
+	while (s1[i] && s2[i] && s1[i] == s2[i])
+		i++;
+	return (s1[i] - s2[i]);
 }

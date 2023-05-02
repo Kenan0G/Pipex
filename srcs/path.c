@@ -6,7 +6,7 @@
 /*   By: kgezgin <kgezgin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/21 13:16:17 by kgezgin           #+#    #+#             */
-/*   Updated: 2023/04/17 12:47:53 by kgezgin          ###   ########.fr       */
+/*   Updated: 2023/05/02 10:24:24 by kgezgin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ void	get_path(char **envp, t_data *data)
 {
 	int	i;
 
-	i = data->index + 2;
+	i = data->index + 2 + data->here_doc;
 	ft_path(envp, data);
 	data->cmd = ft_split(data->av[i], ' ');
 	if (is_path(data->av[i]) == 0)
@@ -41,9 +41,6 @@ int	is_path(char *str)
 	return (0);
 }
 
-	// if (access(data->av[data->index + 2], X_OK) == 0)
-	// 	return (ft_strdup(data->av[data->index + 2]));
-
 char	*path_check(t_data *data)
 {
 	char	*good_path;
@@ -51,9 +48,9 @@ char	*path_check(t_data *data)
 	int		i;
 
 	i = 0;
-	if (!data->cmd[0])
+	if (!data->cmd[0] || !data->cmd[0][0])
 	{
-		ft_putstr_fd("Command '' not found", 1);
+		ft_putstr_fd("Command '' not found\n", 2);
 		ft_error(data, 127);
 	}
 	temp = ft_strjoin("/", data->cmd[0]);
@@ -72,10 +69,15 @@ char	*path_check(t_data *data)
 
 void	ft_error_path(t_data *data, char *temp)
 {
+	char	*str;
+	char	*str_2;
+
 	free(temp);
-	ft_putstr_fd("Command '", 2);
-	ft_putstr_fd(data->cmd[0], 2);
-	ft_putstr_fd("' not found \n", 2);
+	str = ft_strjoin("Command '", data->cmd[0]);
+	str_2 = ft_strjoin(str, "' not found \n");
+	write(2, str_2, ft_strlen(str_2));
+	free(str);
+	free(str_2);
 	ft_close(data);
 }
 

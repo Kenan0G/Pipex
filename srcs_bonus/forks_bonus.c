@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   forks.c                                            :+:      :+:    :+:   */
+/*   forks_bonus.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: kgezgin <kgezgin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/21 15:43:59 by kgezgin           #+#    #+#             */
-/*   Updated: 2023/04/25 11:35:29 by kgezgin          ###   ########.fr       */
+/*   Updated: 2023/05/02 10:09:06 by kgezgin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,15 +16,14 @@ void	exec(t_data *data, char **envp)
 {
 	if (data->index == 0)
 		ft_first_cmd(data);
-	else if (data->index != data->ac - 4 && data->ac > 5)
+	else if (data->index != data->nb_cmd - 1)
 		ft_middle_cmd(data);
 	else
 		ft_last_cmd(data);
 	get_path(envp, data);
 	if (execve(data->path, data->cmd, envp) == -1)
 	{
-		ft_close(data);
-		perror(data->path);
+		ft_error_path(data, NULL);
 		if (data->cmd)
 			ft_free_map(data->cmd);
 		if (data->pid)
@@ -81,7 +80,7 @@ void	ft_last_cmd(t_data *data)
 		free(data->pid);
 		exit(EXIT_FAILURE);
 	}
-	if (dup2(data->fd_temp_last, STDIN_FILENO) == -1)
+	if (dup2(data->fd_temp, STDIN_FILENO) == -1)
 	{
 		perror("Error");
 		free(data->pid);
@@ -98,27 +97,15 @@ void	ft_last_cmd(t_data *data)
 void	open_infile(t_data *data)
 {
 	if (data->here_doc == 0)
-	{
 		data->fd_infile = open(data->av[1], O_RDONLY);
-		if (data->fd_infile == -1)
-		{
-			close(data->fd_pipe[1]);
-			perror(data->av[1]);
-			free(data->pid);
-			exit(EXIT_FAILURE);
-		}
-	}
 	else
-	{
-		data->index += 1;
-		here_doc(data->av[2], data);
 		data->fd_infile = open(".here_doc_tmp", O_RDONLY);
-		if (data->fd_infile == -1)
-		{
-			close(data->fd_pipe[1]);
-			perror(data->av[1]);
-			free(data->pid);
-			exit(EXIT_FAILURE);
-		}
+	if (data->fd_infile == -1)
+	{
+		dprintf(1, "testtt\n\n");
+		close(data->fd_pipe[1]);
+		perror(data->av[1]);
+		free(data->pid);
+		exit(EXIT_FAILURE);
 	}
 }

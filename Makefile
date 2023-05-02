@@ -6,7 +6,7 @@
 #    By: kgezgin <kgezgin@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/02/18 10:43:48 by kgezgin           #+#    #+#              #
-#    Updated: 2023/04/25 13:44:36 by kgezgin          ###   ########.fr        #
+#    Updated: 2023/05/02 10:06:05 by kgezgin          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -15,12 +15,13 @@ BONUS_DIR	= ./srcs_bonus
 SRCS		=	main.c\
 				path.c\
 				forks.c\
-				pipex_utils.c
-BONUS_SRCS	=	main.c\
-				path.c\
-				forks.c\
 				here_doc.c\
 				pipex_utils.c
+BONUS_SRCS	=	main_bonus.c\
+				path_bonus.c\
+				forks_bonus.c\
+				here_doc_bonus.c\
+				pipex_utils_bonus.c
 
 OBJS			=	$(addprefix $(SRC_DIR)/, $(SRCS:%.c=%.o))
 BONUS_OBJS		=	$(addprefix $(BONUS_DIR)/, $(BONUS_SRCS:%.c=%.o))
@@ -34,7 +35,7 @@ RM				=	rm -f
 
 $(NAME):	$(OBJS)
 	cd ft_libft && make && cd ../ft_printf && make
-	$(CC) $(CFLAGS) -o $(NAME) $(OBJS) ft_libft/libft.a ft_printf/libftprintf.a
+	$(CC) $(CFLAGS) -o $(NAME) $(OBJS) ft_libft/libft.a ft_printf/libftprintf.a get_next_line/get_next_line.c get_next_line/get_next_line_utils.c
 
 all:		${NAME}
 

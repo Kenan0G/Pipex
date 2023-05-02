@@ -6,7 +6,7 @@
 /*   By: kgezgin <kgezgin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/30 12:52:48 by kgezgin           #+#    #+#             */
-/*   Updated: 2023/03/22 13:03:03 by kgezgin          ###   ########.fr       */
+/*   Updated: 2023/04/25 17:18:15 by kgezgin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@
 
 # endif
 
-char	*get_next_line(int fd);
+char	*get_next_line(int fd, int c);
 size_t	my_strlen(char *str);
 char	*my_strjoin(char *s1, char *s2);
 void	*my_calloc(size_t count, size_t size);
