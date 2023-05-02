@@ -6,7 +6,7 @@
 /*   By: kgezgin <kgezgin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/18 11:12:51 by kgezgin           #+#    #+#             */
-/*   Updated: 2023/05/02 10:30:17 by kgezgin          ###   ########.fr       */
+/*   Updated: 2023/05/02 14:41:53 by kgezgin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,10 +16,8 @@ int	main(int ac, char **av, char **envp)
 {
 	t_data		data;
 
-	if (ac < 5)
-		return (ft_putstr_fd("\n", 2), 0);
-	if (ac > 5)
-		return (ft_putstr_fd("More than 2 commands\n", 2), 0);
+	if (ac != 5)
+		return (ft_putstr_fd("Error\nArguments", 2), 0);
 	data_init(&data, ac, av, 0);
 	ft_loop(&data, envp);
 	ft_close(&data);

@@ -6,7 +6,7 @@
 /*   By: kgezgin <kgezgin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/21 15:43:59 by kgezgin           #+#    #+#             */
-/*   Updated: 2023/05/02 10:09:06 by kgezgin          ###   ########.fr       */
+/*   Updated: 2023/05/02 14:30:09 by kgezgin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -102,7 +102,6 @@ void	open_infile(t_data *data)
 		data->fd_infile = open(".here_doc_tmp", O_RDONLY);
 	if (data->fd_infile == -1)
 	{
-		dprintf(1, "testtt\n\n");
 		close(data->fd_pipe[1]);
 		perror(data->av[1]);
 		free(data->pid);

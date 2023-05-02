@@ -6,7 +6,7 @@
 /*   By: kgezgin <kgezgin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/18 11:12:51 by kgezgin           #+#    #+#             */
-/*   Updated: 2023/04/28 15:11:01 by kgezgin          ###   ########.fr       */
+/*   Updated: 2023/05/02 14:29:37 by kgezgin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,9 @@ int	main(int ac, char **av, char **envp)
 	t_data		data;
 	int			is_here_doc;
 
-	if (strncmp("here_doc", av[1], 9) == 0)
+	if (!av[1])
+		return (ft_putstr_fd("Error\narguments\n", 2), 0);
+	if (ft_strncmp("here_doc", av[1], 9) == 0)
 		is_here_doc = 1;
 	else
 		is_here_doc = 0;
